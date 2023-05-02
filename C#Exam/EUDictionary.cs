@@ -10,17 +10,17 @@ namespace C_Exam
 {
     internal class EUDictionary
     {
-        public Dictionary<string, string> dict;
+        public Dictionary<string, List<string>> dict;
         
         public EUDictionary()
         {
-            dict = new Dictionary<string, string>();
+            dict = new Dictionary<string, List<string>>();
         }
-        public EUDictionary(Dictionary<string, string> dict)
+        public EUDictionary(Dictionary<string, List<string>> dict)
         {
             this.dict = dict;
         }
-        public void AddNewWord(string word, string traslate)
+        public void AddNewWord(string word, List<string> traslate)
         {
             dict.Add(word, traslate);
         }
@@ -30,21 +30,31 @@ namespace C_Exam
         }
         public void ChangeTranslate(string word)
         {
+            Console.WriteLine("Enter translate you want to change: ");
+            string toChange = Console.ReadLine();
             Console.WriteLine("Enter new translate: ");
             string tmpTranslate = Console.ReadLine();
-            dict[word] = tmpTranslate;
+            dict[word].Remove(toChange);
+            dict[word].Add(tmpTranslate);
         }
         public void Traslate(string word)
         {
-            dict.TryGetValue(word, out var traslate);
-            Console.WriteLine(word + "-"+ traslate);
+            Console.WriteLine(word+ ":");
+            foreach(var items in dict[word])
+            {
+                Console.WriteLine(items);
+            }
         }
         public void Print()
         {
             var keys = dict.Keys;
             foreach (string key in keys)
             {
-                Console.WriteLine(key + "-" + dict[key]);
+                Console.WriteLine(key+ ":");
+                foreach (var items in dict[key])
+                {
+                    Console.WriteLine(items);
+                }
             }
         } 
         public void SaveInFile()

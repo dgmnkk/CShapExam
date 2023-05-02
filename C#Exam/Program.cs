@@ -23,13 +23,12 @@ namespace C_Exam
                     break;
                 case 2:
                     string deserializedList = File.ReadAllText(FileName);
-                    Dictionary<string, string> tmp = JsonSerializer.Deserialize<Dictionary<string, string>>(deserializedList);
+                    Dictionary<string, List<string>> tmp = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(deserializedList);
                     d = new EUDictionary(tmp);
                     break;
             }
             do
             {
-                
                 Console.WriteLine("1. Add new word\n2. Change word\n3. Delete word\n4. Translate\n5. Save dictionary in file\n6. Print dictionary\n0. Exit");
                 choise = Convert.ToInt32(Console.ReadLine());
                 string w;
@@ -39,12 +38,17 @@ namespace C_Exam
                 {
                     case 1:
                         
-                        Console.WriteLine("Add new word to dictionary");
+                        
                         Console.WriteLine("Enter word in English: ");
                         w = Console.ReadLine();
-                        Console.WriteLine("Enter translate: ");
-                        t = Console.ReadLine();
-                        d.AddNewWord(w, t);
+                        Console.WriteLine("How much translates you want to add?");
+                        int count = Convert.ToInt32(Console.ReadLine());
+                        List<string> strings = new List<string>();
+                        for (int i = 0; i < count;i ++)
+                        {
+                            strings.Add(Console.ReadLine());
+                        }
+                        d.AddNewWord(w,strings );
                         break;
                     case 2:
                         
