@@ -46,6 +46,7 @@ namespace C_Exam
                         List<string> strings = new List<string>();
                         for (int i = 0; i < count;i ++)
                         {
+                            Console.WriteLine($"Enter {i + 1} translate: ");
                             strings.Add(Console.ReadLine());
                         }
                         d.AddNewWord(w,strings );
