@@ -48,7 +48,8 @@ namespace C_Exam
             {
                 dict.Remove(word);
             }
-            
+            else
+            { Console.WriteLine("Such word does`nt exist"); }
         }
         public void ChangeTranslate(string word)
         {
@@ -68,8 +69,22 @@ namespace C_Exam
             }
             else
             { Console.WriteLine("Such word doesn`t exist"); }
-
-
+        }
+        public void RemoveTranslate(string word)
+        {
+            if (dict.ContainsKey(word))
+            {
+                Console.WriteLine("Enter translate you want remove: ");
+                string toDelete = Console.ReadLine();
+                if (dict[word].Contains(toDelete))
+                {
+                    dict[word].Remove(toDelete);
+                }
+                else
+                { Console.WriteLine("Such translate does`nt exist"); }
+            }
+            else
+            { Console.WriteLine("Such word doesn`t exist"); }
         }
         public void Traslate(string word)
         {
@@ -83,7 +98,6 @@ namespace C_Exam
             }
             else
             { Console.WriteLine("Such word doesn`t exist"); }
-
         }
         public void Print()
         {
@@ -114,7 +128,6 @@ namespace C_Exam
             }
             catch (Exception ex)
             { Console.WriteLine(ex.Message); }
-
         }
 
     }

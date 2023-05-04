@@ -30,7 +30,7 @@ namespace C_Exam
             }
             do
             {
-                Console.WriteLine("1. Add new word\n2. Change word\n3. Delete word\n4. Translate\n5. Save dictionary in file\n6. Print dictionary\n7. Add new translate\n0. Exit");
+                Console.WriteLine("1. Add new word\n2. Change translate\n3. Delete word\n4. Translate\n5. Save dictionary in file\n6. Print dictionary\n7. Add new translate\n8. Delete translate\n0. Exit");
                 choise = Convert.ToInt32(Console.ReadLine());
                 string w;
                 string t;
@@ -80,7 +80,11 @@ namespace C_Exam
                         t = Console.ReadLine() ;
                         d.AddNewTranslate(w, t); 
                         break;
-
+                    case 8:
+                        Console.WriteLine("Enter word:");
+                        w = Console.ReadLine();
+                        d.RemoveTranslate(w);
+                        break;  
                     default:
                         Console.WriteLine("Try again"); 
                         break;
