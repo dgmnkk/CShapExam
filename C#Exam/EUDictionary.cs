@@ -11,14 +11,17 @@ namespace C_Exam
     internal class EUDictionary
     {
         public Dictionary<string, List<string>> dict;
+     
         
         public EUDictionary()
         {
             dict = new Dictionary<string, List<string>>();
+            
         }
         public EUDictionary(Dictionary<string, List<string>> dict)
         {
             this.dict = dict;
+            
         }
         public void AddNewWord(string word, List<string> traslate)
         {
@@ -109,11 +112,18 @@ namespace C_Exam
                 {
                     Console.WriteLine(items);
                 }
+               Console.WriteLine("_____________");
             }
         } 
-        public void SaveInFile()
+        public void SaveInFile(List<string> dictionaries)
         {
-            string FileName = "English-UkrainianDictionary.json";
+            Console.WriteLine("Enter name of file: ");
+            string FileName = Console.ReadLine();
+            if(!dictionaries.Contains(FileName))
+            {
+                dictionaries.Add(FileName);
+            }
+            
             try
             {
                 var options = new JsonSerializerOptions 
