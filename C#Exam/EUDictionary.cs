@@ -22,28 +22,68 @@ namespace C_Exam
         }
         public void AddNewWord(string word, List<string> traslate)
         {
-            dict.Add(word, traslate);
+            if (!dict.ContainsKey(word))
+            {
+                dict.Add(word, traslate);
+            }
+            else
+            {
+                Console.WriteLine("Such word with translate exist");
+            }   
+        }
+        public void AddNewTranslate(string word, string newTranslate)
+        {
+            if(dict.ContainsKey(word))
+            {
+                dict[word].Add(newTranslate);
+            }
+            else
+            {
+                Console.WriteLine("Such word doesn`t exist");
+            }
         }
         public void RemoveWord(string word)
         {
-            dict.Remove(word);
+            if(dict.ContainsKey(word))
+            {
+                dict.Remove(word);
+            }
+            
         }
         public void ChangeTranslate(string word)
         {
-            Console.WriteLine("Enter translate you want to change: ");
-            string toChange = Console.ReadLine();
-            Console.WriteLine("Enter new translate: ");
-            string tmpTranslate = Console.ReadLine();
-            dict[word].Remove(toChange);
-            dict[word].Add(tmpTranslate);
+            if(dict.ContainsKey(word))
+            {
+                Console.WriteLine("Enter translate you want to change: ");
+                string toChange = Console.ReadLine();
+                Console.WriteLine("Enter new translate: ");
+                string tmpTranslate = Console.ReadLine();
+                if (dict[word].Contains(toChange))
+                {
+                    dict[word].Remove(toChange);
+                    dict[word].Add(tmpTranslate);
+                }
+                else
+                { Console.WriteLine("Such translate does`nt exist"); }
+            }
+            else
+            { Console.WriteLine("Such word doesn`t exist"); }
+
+
         }
         public void Traslate(string word)
         {
-            Console.WriteLine(word+ ":");
-            foreach(var items in dict[word])
+            if (dict.ContainsKey(word))
             {
-                Console.WriteLine(items);
+                Console.WriteLine(word + ":");
+                foreach (var items in dict[word])
+                {
+                    Console.WriteLine(items);
+                }
             }
+            else
+            { Console.WriteLine("Such word doesn`t exist"); }
+
         }
         public void Print()
         {
